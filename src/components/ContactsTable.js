@@ -11,6 +11,8 @@ import { Avatar } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
+import { CopyToClipboardText } from "./CopyToClipboardText";
+import { HUMAN_NATIONALITY } from "./../nationality/nationality";
 
 const useStyles = makeStyles({
   table: {},
@@ -40,9 +42,7 @@ export const ContactsTable = ({ data }) => {
                 <Avatar src={contact.picture.thumbnail} />
               </TableCell>
               <TableCell>
-                {contact.name.title}
-                {contact.name.first}
-                {contact.name.last}
+                {contact.name.title} {contact.name.first} {contact.name.last}
               </TableCell>
               <TableCell>
                 <Typography>
@@ -50,11 +50,23 @@ export const ContactsTable = ({ data }) => {
                 </Typography>
                 <Typography>{contact.dob.age} years</Typography>
               </TableCell>
-              <TableCell>{contact.email}</TableCell>
-              <TableCell>{contact.phone}</TableCell>
-              <TableCell>5</TableCell>
-              <TableCell>6</TableCell>
-              <TableCell>7</TableCell>
+              <TableCell>
+                <CopyToClipboardText text={contact.email} />
+              </TableCell>
+              <TableCell>
+                <CopyToClipboardText text={contact.phone} />
+              </TableCell>
+              <TableCell>
+                <Typography>/{contact.location.country}/</Typography>
+                <Typography>
+                  {contact.location.postcode} {contact.location.city},{" "}
+                  {contact.location.street.name}{" "}
+                  {contact.location.street.number}
+                </Typography>
+              </TableCell>
+              <TableCell align="right">
+                {HUMAN_NATIONALITY[contact.nat]}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

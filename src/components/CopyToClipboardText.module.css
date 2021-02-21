@@ -1,0 +1,8 @@
+.copyIcon {
+  margin-right: 5px;
+}
+
+.link {
+  display: flex;
+  cursor: pointer;
+}
