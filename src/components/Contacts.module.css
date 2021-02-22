@@ -1,0 +1,6 @@
+.headContent {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
